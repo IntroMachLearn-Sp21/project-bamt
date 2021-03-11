@@ -15,7 +15,7 @@ for i in data:
     correct += add
     for x in data[i]['difficultyTags']:
         if(x in bonusTotal):
-            bonusTotal[x] += add
+            bonusTotal[x] += 1
             bonus[x] += add
         else:
             bonusTotal[x] = 1
