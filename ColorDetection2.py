@@ -29,38 +29,39 @@ boundaries = [([17, 15, 50], [60, 66, 255]), ([22, 93, 0], [100,255,255]), ([50,
 #hundred = 100
 #twohun = 200
 #image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-color = []
-def ColorFeauture(path):
 
+def ColorFeauture(path):
+	color = []
+	boundaries = [([17, 15, 50], [60, 66, 255]), ([22, 93, 0], [100,255,255]), ([50,0,0], [230,255,60])]
 	#for i in range(len(data)): 
-		image = image = cv2.imread(path)#cv2.imread(data[i])
-		#image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
-		#plt.imshow(image)
-		#plt.show()
-		for (lower, upper) in boundaries:
-		# create NumPy arrays from the boundaries
-			lower = np.array(lower, dtype = "uint8")
-			upper = np.array(upper, dtype = "uint8")
-			# find the colors within the specified boundaries and apply
-			# the mask
-			mask = cv2.inRange(image, lower, upper)
-			output = cv2.bitwise_and(image, image, mask = mask)
-			# show the images
-			cv2.imshow("images", np.hstack([image, output]))
-			cv2.waitKey(0)
-			test2 = cv2.countNonZero(mask)
-			print(test2)
-			if cv2.countNonZero(mask) > 58000 and cv2.countNonZero(mask) < 65000:
-				color.append(1) # 1 is for red
-			
-				#elif cv2.countNonZero(mask) 
-			elif cv2.countNonZero(mask) > 65000:
-				color.append(2) # 2 is for yellow
-			
-			elif cv2.countNonZero(mask) < 58000 and cv2.countNonZero(mask) > 30000:
-				color.append(3) # 3 is for blue
-			else:
-				color.append(-1) # -1 for none of the above
+	image = image = cv2.imread(path)#cv2.imread(data[i])
+	#image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+	#plt.imshow(image)
+	#plt.show()
+	for (lower, upper) in boundaries:
+	# create NumPy arrays from the boundaries
+		lower = np.array(lower, dtype = "uint8")
+		upper = np.array(upper, dtype = "uint8")
+		# find the colors within the specified boundaries and apply
+		# the mask
+		mask = cv2.inRange(image, lower, upper)
+		output = cv2.bitwise_and(image, image, mask = mask)
+		# show the images
+		#cv2.imshow("images", np.hstack([image, output]))
+		#cv2.waitKey(0)
+		test2 = cv2.countNonZero(mask)
+		#print(test2)
+		if cv2.countNonZero(mask) > 58000 and cv2.countNonZero(mask) < 65000:
+			color.append(1) # 1 is for red
+		
+			#elif cv2.countNonZero(mask) 
+		elif cv2.countNonZero(mask) > 65000:
+			color.append(2) # 2 is for yellow
+		
+		elif cv2.countNonZero(mask) < 58000 and cv2.countNonZero(mask) > 30000:
+			color.append(3) # 3 is for blue
+		else:
+			color.append(-1) # -1 for none of the above
 #test = cv2.countNonZero(mask)
-print(color)
+	return np.hstack(color)
 #print(test)
