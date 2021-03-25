@@ -13,6 +13,7 @@ from sklearn.model_selection import train_test_split
 def writeJSON(path, prediction):
     diction = {}
     count = 0
+    print(prediction)
     for filename in glob.glob(path + "*.png"):
         name = os.path.split(filename)[-1]
         diction[name] = {"signTags": [prediction[count]]}
