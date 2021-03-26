@@ -16,7 +16,7 @@ def writeJSON(path, prediction):
     print(prediction)
     for filename in glob.glob(path + "*.png"):
         name = os.path.split(filename)[-1]
-        diction[name] = {"signTags": [prediction[count]]}
+        diction[name[:-4]] = {"signTags": [prediction[count]]}
         count += 1
     with open('person.json', 'w') as json_file:
         json.dump(diction, json_file)
@@ -75,16 +75,14 @@ for i in range(0,3):
         forest = RandomForestClassifier(criterion='entropy', n_estimators=100, n_jobs=-1,  max_depth = 20)
         forest.fit(train, traintruth)
         scores.append(forest.score(test, testtruth))
-        #if(i == 0):
-        #    writeJSON("C:/Users/Alen/Documents/Machine Learning/Small Data/Out/", forest.score(test, testtruth))
     for j in range(0, 3):
         classifier = neighbors.KNeighborsClassifier(10, weights='distance')
         classifier.fit(train, traintruth)
         scores.append(classifier.score(test, testtruth))
-
-with open('Round1', 'w') as f:
+print(scores)
+"""with open('Round1', 'w') as f:
     for item in scores:
-        f.write("%s\n" % item)
+        f.write("%s\n" % item)"""
 
 
 scores = []
@@ -99,9 +97,9 @@ for i in range(0,3):
     classifier.fit(train, traintruth)
     scores.append(classifier.score(test, testtruth))
     
-
-with open('Round2', 'w') as f:
+print(scores)
+"""with open('Round2', 'w') as f:
     for item in scores:
-        f.write("%s\n" % item)
+        f.write("%s\n" % item)"""
 
 
