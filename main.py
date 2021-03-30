@@ -43,17 +43,13 @@ train, traintruth = getData("C:/Users/Alen/Documents/Machine Learning/BigData/Ou
 alltrain.append(train)
 alltraintruth.append(traintruth)
 
-train, traintruth = getData("C:/Users/Alen/Documents/Machine Learning/Small Data/Out/")
+train, traintruth = getData("BigData2/Out/")
 alltrain.append(train)
 alltraintruth.append(traintruth)
 
-train, traintruth = getData("C:/Users/Alen/Documents/Machine Learning/Small Data/Out/")
+train, traintruth = getData("BigData3/Out/")
 alltrain.append(train)
 alltraintruth.append(traintruth)
-
-"""train, traintruth = getData("C:/Users/Alen/Documents/Machine Learning/Small Data/Out/")
-alltrain.append(train)
-alltraintruth.append(traintruth)"""
 
 scores = []
 
