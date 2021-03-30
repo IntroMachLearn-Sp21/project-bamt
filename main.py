@@ -1,7 +1,7 @@
 import glob
 import json
 import os
-from ShapeFeature import ShapeFeature
+from ShapeFeature import ShapeFeature, ShapeFeatureTest
 from worddetection import wordDetection
 from ColorDetection2 import ColorFeauture
 import numpy as np
@@ -24,20 +24,22 @@ def writeJSON(path, prediction):
 def getData(path):
     data = []
     datatruth = []
-    for filename in glob.glob(path + "*.png"):
-        data.append(np.concatenate((ColorFeauture(filename), ShapeFeature(filename), wordDetection(filename))))
-    data = np.vstack(data)
     f = open(path + "tags.json")
     f = json.load(f)
-    for i in f:
-        datatruth.append(f[i]['signTags'])
+    for filename in glob.glob(path + "*.png"):
+        #np.concatenate((ColorFeauture(filename), ShapeFeature(filename), wordDetection(filename)))
+        data.append(ShapeFeatureTest(filename))
+        name = os.path.split(filename)[-1]
+        datatruth.append(f[name[:-4]]['signTags'])
+
+    data = np.vstack(data)
     datatruth = np.hstack(datatruth)
     return data, datatruth
 
 alltrain = []
 alltraintruth = []
 
-train, traintruth = getData("C:/Users/Alen/Documents/Machine Learning/Small Data/Out/")
+train, traintruth = getData("C:/Users/Alen/Documents/Machine Learning/BigData/Out/")
 alltrain.append(train)
 alltraintruth.append(traintruth)
 
