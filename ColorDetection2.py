@@ -43,8 +43,8 @@ def ColorFeauture(path):
 		mask = cv2.inRange(image, lower, upper)
 		output = cv2.bitwise_and(image, image, mask = mask)
 			# show the images
-		cv2.imshow("images", np.hstack([image, output]))
-		cv2.waitKey(0)
+		#cv2.imshow("images", np.hstack([image, output]))
+		#cv2.waitKey(0)
 		test2 = cv2.countNonZero(mask)
 		print(test2)
 		if cv2.countNonZero(mask) > 17000 and cv2.countNonZero(mask) < 30000:
