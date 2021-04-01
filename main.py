@@ -80,7 +80,7 @@ for i in range(0,3):
         classifier = neighbors.KNeighborsClassifier(10, weights='distance')
         classifier.fit(train, traintruth)
         scores.append(classifier.score(test, testtruth))
-        confus.append(confusion_matrix(testtruth, forest.predict(test)))
+        confus.append(confusion_matrix(testtruth, classifier.predict(test)))
 print(scores)
 with open('Round1', 'w') as f:
     for item in scores:
@@ -95,10 +95,11 @@ for i in range(0,3):
     forest = RandomForestClassifier(criterion='entropy', n_estimators=100, n_jobs=-1, max_depth = 20)
     forest.fit(train, traintruth)
     scores.append(forest.score(test, testtruth))
+    confus.append(confusion_matrix(testtruth, forest.predict(test)))
     classifier = neighbors.KNeighborsClassifier(10, weights='distance')
     classifier.fit(train, traintruth)
     scores.append(classifier.score(test, testtruth))
-    confus.append(confusion_matrix(testtruth, forest.predict(test)))
+    confus.append(confusion_matrix(testtruth, classifier.predict(test)))
     
 print(scores)
 with open('Round2', 'w') as f:
