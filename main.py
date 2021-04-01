@@ -27,10 +27,11 @@ def getData(path):
     f = open(path + "tags.json")
     f = json.load(f)
     for filename in glob.glob(path + "*.png"):
-        #np.concatenate((ColorFeauture(filename), ShapeFeature(filename), wordDetection(filename)))
-        data.append(ShapeFeatureTest(filename))
+        data.append(np.concatenate((ColorFeauture(filename), ShapeFeature(filename), wordDetection(filename))))
+        #data.append(ShapeFeature(filename))
         name = os.path.split(filename)[-1]
         datatruth.append(f[name[:-4]]['signTags'])
+        print(f[name[:-4]]['signTags'])
 
     data = np.vstack(data)
     datatruth = np.hstack(datatruth)
@@ -39,7 +40,7 @@ def getData(path):
 alltrain = []
 alltraintruth = []
 
-train, traintruth = getData("C:/Users/Alen/Documents/Machine Learning/BigData/Out/")
+train, traintruth = getData("BigData1/Out/")
 alltrain.append(train)
 alltraintruth.append(traintruth)
 
@@ -52,6 +53,7 @@ alltrain.append(train)
 alltraintruth.append(traintruth)
 
 scores = []
+confus = []
 
 for i in range(0,3):
     train = []
@@ -73,14 +75,16 @@ for i in range(0,3):
         forest = RandomForestClassifier(criterion='entropy', n_estimators=100, n_jobs=-1,  max_depth = 20)
         forest.fit(train, traintruth)
         scores.append(forest.score(test, testtruth))
+        confus.append(confusion_matrix(testtruth, forest.predict(test)))
     for j in range(0, 3):
         classifier = neighbors.KNeighborsClassifier(10, weights='distance')
         classifier.fit(train, traintruth)
         scores.append(classifier.score(test, testtruth))
+        confus.append(confusion_matrix(testtruth, forest.predict(test)))
 print(scores)
-"""with open('Round1', 'w') as f:
+with open('Round1', 'w') as f:
     for item in scores:
-        f.write("%s\n" % item)"""
+        f.write("%s\n" % item)
 
 
 scores = []
@@ -94,10 +98,12 @@ for i in range(0,3):
     classifier = neighbors.KNeighborsClassifier(10, weights='distance')
     classifier.fit(train, traintruth)
     scores.append(classifier.score(test, testtruth))
+    confus.append(confusion_matrix(testtruth, forest.predict(test)))
     
 print(scores)
-"""with open('Round2', 'w') as f:
+with open('Round2', 'w') as f:
     for item in scores:
-        f.write("%s\n" % item)"""
-
-
+        f.write("%s\n" % item)
+with open('confusion.txt', 'w') as f:
+    for item in confus:
+        f.write("%s\n" % item)
