@@ -59,7 +59,7 @@ def ColorFeauture(path):
 		else:
 			color.append(-1) # -1 for none of the above
 	
-		#return np.hstack(ColorFeauture)
+	return np.hstack(color)
 	print(color)	
 
 #test = cv2.countNonZero(mask[2])
