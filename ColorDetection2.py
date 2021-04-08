@@ -56,7 +56,7 @@ def ColorFeauture(path):
 		# the mask
 		mask = cv2.inRange(image_resized, lower, upper)
 		output = cv2.bitwise_and(image_resized, image_resized, mask = mask)
-		np.hstack([image,output])
+		np.hstack([image_resized,output])
 		# show the images
 		#cv2.imshow("images", np.hstack([image_resized, output]))
 		cv2.waitKey(0)
