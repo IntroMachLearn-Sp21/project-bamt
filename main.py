@@ -27,7 +27,7 @@ def getData(path):
     f = open(path + "tags.json")
     f = json.load(f)
     for filename in glob.glob(path + "*.png"):
-        data.append(np.concatenate(ShapeFeature(filename), wordDetection(filename), ColorFeauture(filename)))
+        data.append(np.concatenate((ShapeFeature(filename), wordDetection(filename), ColorFeauture(filename))))
         #data.append(ShapeFeature(filename))
         name = os.path.split(filename)[-1]
         datatruth.append(f[name[:-4]]['signTags'])
