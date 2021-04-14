@@ -32,6 +32,11 @@ def getData(path):
         name = os.path.split(filename)[-1]
         datatruth.append(f[name[:-4]]['signTags'])
         print(f[name[:-4]]['signTags'])
+        if (len(f[name[:-4]]['signTags']) < 1):
+            data = data[:-1]
+        elif (f[name[:-4]]['signTags'][0] == 'Other') or (f[name[:-4]]['signTags'][0] == 'otherSign'):
+            datatruth = datatruth[:-1]
+            datatruth.append('other')
 
     data = np.vstack(data)
     datatruth = np.hstack(datatruth)
