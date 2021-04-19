@@ -4,6 +4,7 @@ import os
 from ShapeFeature import ShapeFeature, ShapeFeatureTest
 from worddetection import wordDetection
 from ColorDetection2 import ColorFeauture
+from color import ColorFeauture2
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 from joblib import dump, load
@@ -14,14 +15,15 @@ def writeJSON(path, prediction):
     for name in path:
         diction[name] = {"signTags": [prediction[count]]}
         count += 1
-    with open('person.json', 'w') as json_file:
+    with open('prediction.json', 'w') as json_file:
         json.dump(diction, json_file)
 
 def getData(path):
     data = []
     names = []
     for filename in glob.glob(path + "*.png"):
-        data.append(np.concatenate((ShapeFeature(filename), wordDetection(filename), ColorFeauture(filename))))
+        # Features being used
+        data.append(np.concatenate((ShapeFeature(filename), wordDetection(filename), ColorFeauture(filename), ColorFeauture2(filename))))
         #data.append(ShapeFeature(filename))
         name = os.path.split(filename)[-1]
         names.append(name[:-4])
@@ -35,4 +37,4 @@ def Test(trainpath):
     writeJSON(paths, prediction)
 
 if __name__ == "__main__":
-    Test("Small Data/Out/")
+    Test("Small Data/Out/") #####################  Change to location of the Test Data ##################################

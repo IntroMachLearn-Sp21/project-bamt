@@ -1,9 +1,10 @@
 import glob
 import json
 import os
-from ShapeFeature import ShapeFeature, ShapeFeatureTest
+from ShapeFeature import ShapeFeature
 from worddetection import wordDetection
 from ColorDetection2 import ColorFeauture
+from color import ColorFeauture2
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import neighbors
@@ -27,7 +28,7 @@ def getData(path):
     f = open(path + "tags.json")
     f = json.load(f)
     for filename in glob.glob(path + "*.png"):
-        data.append(np.concatenate((ShapeFeature(filename), wordDetection(filename), ColorFeauture(filename))))
+        data.append(np.concatenate((ShapeFeature(filename), wordDetection(filename), ColorFeauture(filename), ColorFeauture2(filename))))
         #data.append(ShapeFeature(filename))
         name = os.path.split(filename)[-1]
         datatruth.append(f[name[:-4]]['signTags'])

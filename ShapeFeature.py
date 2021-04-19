@@ -1,9 +1,7 @@
 import cv2
 from PyShapes import *
 import numpy as np
-import scipy
-from scipy import ndimage
-import imutils
+
 
 
 def ShapeFeatureTest(path):

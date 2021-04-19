@@ -7,7 +7,7 @@ from skimage import io
 from skimage.color import rgb2lab, deltaE_cie76
 import numpy as np
 
-def ColorFeauture(path):
+def ColorFeauture2(path):
 	colors, ratios = detect_colors(path, 3)
 
 	colors[0] = colors[0][1:]
