@@ -19,7 +19,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", help = "path to the image")
 args = vars(ap.parse_args())
 
-data = ["0vb3z2iLdClrRjUt.png","0KTSKyi9y6Lseh4F.png","Bj2SaMA7zbXhKqQc.png","4Tl1KQoKA1L9Ojmo.png","1brETb1XMtyZb9IQ.png","1EZFGgFhqElTDU2w.png","5GxrM9hl0BWla6Do.png","7ayGnCJEC2VBhiwn.png","eILS93wyfWyEX4hG.png"]# 0KTSKyi9y6Lseh4F.png '0vb3z2iLdClrRjUt.png'] 1brETb1XMtyZb9IQ.png 1EZFGgFhqElTDU2w.png
+data = ["0vb3z2iLdClrRjUt.png","MVTSjEuK685jFc7M.png","0KTSKyi9y6Lseh4F.png","Bj2SaMA7zbXhKqQc.png","4Tl1KQoKA1L9Ojmo.png","1brETb1XMtyZb9IQ.png","1EZFGgFhqElTDU2w.png","5GxrM9hl0BWla6Do.png","7ayGnCJEC2VBhiwn.png","eILS93wyfWyEX4hG.png"]# 0KTSKyi9y6Lseh4F.png '0vb3z2iLdClrRjUt.png'] 1brETb1XMtyZb9IQ.png 1EZFGgFhqElTDU2w.png
 """ image = cv2.imread('3nLBUWJlvgfA8uIA.png')
 print("The type of this input is {}".format(type(image)))
 print("Shape: {}".format(image.shape))
@@ -36,9 +36,10 @@ def ColorFeauture(path):
 	height_width = (height1,width1)
 	color = []
 	image = skimage.io.imread(path)
+	image = cv2.resize(image,height_width)
 	# Create  mask
 	mask = np.ones(shape=image.shape[0:2], dtype="bool")
-	# Draw a filled rectangle on the mask 
+	 
 	rr, cc = skimage.draw.rectangle(start=(25, 90), end=(373, 444))
 	mask[rr, cc] = False
 	image[mask] = 0
@@ -52,12 +53,11 @@ def ColorFeauture(path):
 		# create NumPy arrays from the boundaries
 		lower = np.array(lower, dtype = "uint8")
 		upper = np.array(upper, dtype = "uint8")
-		# find the colors within the specified boundaries and apply
-		# the mask
+		
 		mask = cv2.inRange(image_resized, lower, upper)
 		output = cv2.bitwise_and(image_resized, image_resized, mask = mask)
 		np.hstack([image_resized,output])
-		# show the images
+		
 		#cv2.imshow("images", np.hstack([image_resized, output]))
 		cv2.waitKey(0)
 		test2 = cv2.countNonZero(mask)
