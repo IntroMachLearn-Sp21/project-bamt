@@ -12,6 +12,7 @@
 10. pandas
 11. dominant_color_detection
 12. matplotlib
+13. sklearn
 
 ## Training Classifier
 The python file train.py contains a function called Train that takes
