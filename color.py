@@ -27,8 +27,6 @@ def ColorFeauture2(path):
 	temp2 = lab[0][1]
 	temp3 = lab[0][2]
 	
-	print(path)
-	print(lab)
 	color = []
 	if(temp1 >= 60 and temp1 <= 80 and temp2 >= -40 and temp2 <= 80 and temp3 >= -128 and temp3 <= -45):
 		color.append(1) #Blue

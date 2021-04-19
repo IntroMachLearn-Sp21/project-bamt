@@ -38,4 +38,4 @@ def Train(trainpath):
     dump(forest, 'network.joblib')
 
 if __name__ == "__main__":
-    Train("Small Data/Out/") #####################  Change to location of the Training Data ##################################
+    Train("FullData/") #####################  Change to location of the Training Data ##################################
