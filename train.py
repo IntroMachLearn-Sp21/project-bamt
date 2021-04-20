@@ -15,7 +15,10 @@ def getData(path):
     datatruth = []
     f = open(path + "tags.json")
     f = json.load(f)
+    count = 1
     for filename in glob.glob(path + "*.png"):
+        print(count)
+        count += 1
         # Features being used
         data.append(np.concatenate((ShapeFeature(filename), wordDetection(filename), ColorFeauture(filename), ColorFeauture2(filename))))
         #data.append(ShapeFeature(filename))
@@ -46,4 +49,4 @@ def Train(trainpath):
     dump(forest, 'network.joblib')
 
 if __name__ == "__main__":
-    Train("images/") #####################  Change to location of the Training Data ##################################
+    Train("FullData/") #####################  Change to location of the Training Data ##################################
