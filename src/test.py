@@ -1,10 +1,10 @@
 import glob
 import json
 import os
-from ShapeFeature import ShapeFeature, ShapeFeatureTest
-from worddetection import wordDetection
-from ColorDetection2 import ColorFeauture
-from color import ColorFeauture2
+from feature_extractors.ShapeFeature import ShapeFeature, ShapeFeatureTest
+from feature_extractors.worddetection import wordDetection
+from feature_extractors.ColorDetection2 import ColorFeauture
+from feature_extractors.color import ColorFeauture2
 from sklearn.ensemble import RandomForestClassifier
 import numpy as np
 from joblib import dump, load
